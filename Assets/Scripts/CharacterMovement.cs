@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     public float speed = 3f;
-    public float jumpSpeed = 10f;
+    public float jumpSpeed = 100f;
     private float direction = 0;
 
     private Rigidbody2D rb;
@@ -33,7 +33,9 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        gameObject.transform.localScale = transform.localScale;
+
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         
@@ -71,10 +73,17 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        
+
         if (collision.CompareTag("Coin"))
         {
             scController.points++;
             Destroy(collision.gameObject);
         }
     }
+
+    
+
+
 }

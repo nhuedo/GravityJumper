@@ -30,4 +30,16 @@ public class PlatformScript : MonoBehaviour
         movement = Vector3.right * direction * speed * Time.deltaTime;
         transform.Translate(movement);
     }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        col.gameObject.transform.parent = null;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        col.gameObject.transform.SetParent(transform);
+
+        
+    }
 }
